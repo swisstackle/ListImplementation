@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +68,14 @@ namespace ListImplementation
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if ((uint)index >= (uint)_size) throw new ArgumentOutOfRangeException();
+            _size--;
+            if (index < _size)
+            {
+                Array.Copy(_items, index + 1, _items, index, _size - index);
+            }
+            _items[_size] = default!;
+            _version++;
         }
 
         public void Add(T item)
