@@ -18,5 +18,14 @@ namespace ListImplementation
             _items = s_emptyArray;
             _size = 0;
         }
+
+        private void Grow()
+        {
+            if (_size >= _items.Length)
+            {
+                var newCapacity = _items.Length == 0 ? 4 : _items.Length * 2;
+                Array.Resize(ref _items, newCapacity);
+            }
+        }
     }
 }
