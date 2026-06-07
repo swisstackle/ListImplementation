@@ -81,7 +81,12 @@ namespace ListImplementation
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            if (_size > 0)
+            {
+                Array.Clear(_items, 0, _size);
+                _size = 0;
+            }
+            _version++;
         }
 
         public bool Contains(T item)
