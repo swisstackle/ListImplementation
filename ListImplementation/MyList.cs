@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,11 +111,13 @@ namespace ListImplementation
             throw new NotImplementedException();
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        public Enumerator GetEnumerator() => new Enumerator(this);
 
+        // Explicit implementation for the generic interface
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
+
+        // Explicit implementation for the legacy interface
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
